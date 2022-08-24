@@ -3,9 +3,10 @@
 This project is part of "ReactRecipe" course by webdiary academy. The progress
 of this app is divided into different branches based on the lessons. 
 
+## Project Branches
 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
 
 ## Available Scripts
 
