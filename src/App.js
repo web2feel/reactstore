@@ -16,7 +16,7 @@ const App = () => {
     return(
         <div className="appWrapper">
             <Header name={siteName} />
-            <Main />
+            <Main products={products}/>
             <Footer name={siteName} />
         </div>
     )
