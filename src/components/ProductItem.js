@@ -5,7 +5,7 @@ function ProductItem({name, price, id}) {
     <div className="productItem">
       <div className="itemName">{name}</div>
       <div className="itemPic">
-        <img src={`https://picsum.photos/id/${id}/600/400`} alt="" />
+        <img src={`https://picsum.photos/id/${id}/600/400`} alt=""/>
       </div>
       <div className="itemMeta">
         <div className="itemPrice">$ {price}</div>

@@ -3,7 +3,7 @@ import ProductGallery from './ProductGallery'
 function Main({products}) {
   return (
     <div className="appMain">
-        <ProductGallery products={products} />
+        <ProductGallery products={products}/>
     </div>
   )
 }

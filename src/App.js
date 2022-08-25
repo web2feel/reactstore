@@ -12,7 +12,6 @@ const App = () => {
         {id:204, name:"Product Five", price:40},
         {id:208, name:"Product Six", price:55},
     ]
-    
     return(
         <div className="appWrapper">
             <Header name={siteName} />
