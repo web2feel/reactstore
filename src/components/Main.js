@@ -1,9 +1,9 @@
 import React from 'react'
-
-function Main() {
+import ProductGallery from './ProductGallery'
+function Main({products}) {
   return (
     <div className="appMain">
-        
+        <ProductGallery products={products} />
     </div>
   )
 }
