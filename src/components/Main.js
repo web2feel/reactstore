@@ -1,9 +1,9 @@
 import React from 'react'
 import ProductGallery from './ProductGallery'
-function Main({products}) {
+function Main({products, cart, setCart}) {
   return (
     <div className="appMain">
-        <ProductGallery products={products}/>
+        <ProductGallery products={products} cart={cart} setCart={setCart}/>
     </div>
   )
 }

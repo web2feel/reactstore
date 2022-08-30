@@ -1,15 +1,35 @@
 import React from "react";
+import {currencyFormatter} from "../util"
 
-function ProductItem({name, price, id}) {   
+function ProductItem({ id,title,price,image,cart,setCart }) { 
+
+  const cartHandler = () => {
+
+    setCart((prevState) => {
+      let cartProduct = {
+        id,
+        title,
+        price,
+        image
+      }
+      return [...prevState, cartProduct]
+    })
+
+ 
+
+  }
+
   return (
     <div className="productItem">
-      <div className="itemName">{name}</div>
+      <div className="itemName">
+        <h3>{title}</h3>        
+        </div>
       <div className="itemPic">
-        <img src={`https://picsum.photos/id/${id}/600/400`} alt=""/>
+        <img src={`/images/${image}`} alt=""/>
       </div>
       <div className="itemMeta">
-        <div className="itemPrice">$ {price}</div>
-        <button className="cartButton">Add to Cart</button>
+        <div className="itemPrice"> {currencyFormatter(price)} </div>
+        <button className="cartButton" onClick={cartHandler}>Add to Cart</button>
       </div>
     </div>
   );
