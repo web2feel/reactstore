@@ -7,6 +7,7 @@ import {useState} from "react"
 const App = () => {
     const siteName = "React Shop"
     const [cart, setCart] = useState([])
+    
     console.log(cart)
     return(
         <div className="appWrapper">

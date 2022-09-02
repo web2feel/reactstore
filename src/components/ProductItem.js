@@ -47,7 +47,7 @@ function ProductItem({ id, title, price, image, cart, setCart }) {
         <div className="itemPrice"> {currencyFormatter(price)} </div>
 
         {isInCart(id) ? (
-          <button className="cartButton" onClick={() => countHandler(id)} > {productCount} Added to Cart </button>
+          <button className="addedButton" onClick={() => countHandler(id)} > {productCount} Added to Cart </button>
         ) : (
           <button className="cartButton" onClick={cartHandler}>
             Add to Cart
