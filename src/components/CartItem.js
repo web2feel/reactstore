@@ -38,7 +38,7 @@ function CartItem({ id, title, image, price, count, setCart }) {
       <div className="itemInfo">
         <p>{title}</p>
         <div className="cartUpdater">
-          <button onClick-={() => decreaseCount(id)}>-</button>
+          <button onClick={() => decreaseCount(id)}>-</button>
           <div>{count}</div>
           <button onClick={() => increaseCount(id)}>+</button>
         </div>

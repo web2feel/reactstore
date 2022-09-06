@@ -1,14 +1,28 @@
 import Header from "./components/Header"
 import Main  from "./components/Main"
 import Footer from "./components/Footer"
-import productData from "./data.json"
-import {useState} from "react"
+//import productData from "./data.json"
+import {useState,useEffect} from "react"
 
 const App = () => {
+
     const siteName = "React Shop"
+
     const [cart, setCart] = useState([])
     
-    console.log(cart)
+    const [productData, setProductData] = useState([])
+ 
+    const getProductData = async() => {
+        let res = await fetch("http://localhost:4000/products")
+        let data = await res.json()
+        setProductData(data)
+    }
+
+    useEffect(() =>{
+         getProductData()
+    },[])
+
+
     return(
         <div className="appWrapper">
             <Header name={siteName} />

@@ -1,4 +1,5 @@
-[
+{
+  "products": [
     {
       "id": "628779447ee672e63c420666",
       "title": "Fuentes Rojas",
@@ -71,4 +72,15 @@
       "price": 70,
       "image": "prod012.png"
     }
+  ],
+  "posts": [
+    {
+      "id": "weqwe3452345",
+      "title": "Lorem ipsum"
+    },
+    {
+      "id": "o789iuyoi07869787",
+      "title": "My New post"
+    }
   ]
+}

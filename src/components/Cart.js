@@ -16,7 +16,7 @@ function Cart({ cart, setCart }) {
       <h3>Cart</h3>
       <div className="cartList">
         { cart.map((cartProduct) => {
-          return <CartItem {...cartProduct} setCart={setCart} />;
+          return <CartItem key={cartProduct.id} {...cartProduct} setCart={setCart} />;
         }) }
       </div>
 
