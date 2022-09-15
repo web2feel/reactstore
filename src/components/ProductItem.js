@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 
 function ProductItem({ id, title, price, image, cart, setCart }) {
 
+
   const isInCart = (_id) => {
     return !!cart.find((item) => item.id === _id);
   };
@@ -15,7 +16,7 @@ function ProductItem({ id, title, price, image, cart, setCart }) {
     setCart((prev) => {
       return prev.map((item, index) => {
         if (index === itemIndex) {
-          return { ...item, count: item.count++ };
+          return { ...item, count: item.count + 1 };
         }
         return item;
       });

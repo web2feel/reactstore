@@ -12,7 +12,6 @@ const App = () => {
   const siteName = "React Shop";
 
   const [cart, setCart] = useState([]);
-
   const [productData, setProductData] = useState([]);
 
   const getProductData = async () => {
@@ -31,12 +30,9 @@ const App = () => {
 
       <Main>
         <Routes>
-          <Route path="/" element={
-              <Home products={productData} cart={cart} setCart={setCart} />
-            }
-          />
+          <Route path="/" element={ <Home products={productData} cart={cart} setCart={setCart} />} />
           <Route path="/cart" element={<CartPage cart={cart} setCart={setCart} />} />
-          <Route path="product/:id" element={<ProductPage />}/>
+          <Route path="product/:id" element={<ProductPage cart={cart} setCart={setCart} />}/>
         </Routes>
       </Main>
       <Footer name={siteName} />

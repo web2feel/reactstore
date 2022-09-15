@@ -114,6 +114,11 @@ a:visited {
     display: grid;
     grid-template-columns:1fr 1fr;
     gap: 20px;
+    .cartButton{
+      cursor: pointer;
+      @include button($accent_blue, #fff);
+      display: block;
+    }
   }
 }
 
