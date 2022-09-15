@@ -52,7 +52,7 @@ function ProductPage({ cart, setCart }) {
         <h1>{product?.title}</h1>
         <h3>{product && currencyFormatter(product?.price)}</h3>
         <div>
-          {isInCart ? (
+          {isInCart(id) ? (
             <button className="cartButton" onClick={() => countHandler(id)}>
               {productCount} Added to Cart
             </button>
