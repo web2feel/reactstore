@@ -2,41 +2,54 @@ import Header from "./components/Header";
 import Main from "./components/Main";
 import Footer from "./components/Footer";
 //import productData from "./data.json"
-import { useState, useEffect } from "react";
+import { useState, useEffect, useReducer } from "react";
 import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import CartPage from "./pages/CartPage";
 import ProductPage from "./pages/ProductPage";
+import { AppContext } from "./context/AppContext";
+import {reducer, initialState} from "./context/AppReducer"
 
 const App = () => {
   const siteName = "React Shop";
 
   const [cart, setCart] = useState([]);
-  const [productData, setProductData] = useState([]);
 
+  //const [productData, setProductData] = useState([]);
+
+  const [state,dispatch] = useReducer(reducer,initialState)
+  console.log(state)
+  
   const getProductData = async () => {
     let res = await fetch("http://localhost:4000/products");
     let data = await res.json();
-    setProductData(data);
+    return data
   };
 
   useEffect(() => {
-    getProductData();
+    getProductData().then(function(data){
+      dispatch({
+        type:"PRODUCTS_LOADED",
+        payload:data
+      })
+    });
   }, []);
 
   return (
+
+    <AppContext.Provider value={{state, cart, setCart}}>
     <div className="appWrapper">
       <Header name={siteName} />
-
       <Main>
         <Routes>
-          <Route path="/" element={ <Home products={productData} cart={cart} setCart={setCart} />} />
-          <Route path="/cart" element={<CartPage cart={cart} setCart={setCart} />} />
-          <Route path="product/:id" element={<ProductPage cart={cart} setCart={setCart} />}/>
+          <Route path="/" element={<Home />} />
+          <Route path="/cart" element={<CartPage />} />
+          <Route path="product/:id" element={<ProductPage />}/>
         </Routes>
       </Main>
       <Footer name={siteName} />
     </div>
+    </AppContext.Provider>
   );
 };
 

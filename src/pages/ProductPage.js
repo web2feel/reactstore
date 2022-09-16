@@ -1,7 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { currencyFormatter } from "../util";
 import { useParams } from "react-router-dom";
-function ProductPage({ cart, setCart }) {
+import {AppContext} from "../context/AppContext"
+function ProductPage() {
+  
+  const {cart,setCart} = useContext(AppContext)
+  
   const { id } = useParams();
   const [product, setProduct] = useState();
 

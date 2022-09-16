@@ -1,9 +1,9 @@
 import React from 'react'
 import Cart  from "../components/Cart"
-function CartPage({cart,setCart}) {
+function CartPage() {
   return (
     <>
-    <Cart cart={cart} setCart={setCart} />
+    <Cart />
     </>
   )
 }

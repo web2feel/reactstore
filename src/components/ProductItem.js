@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useMemo, useContext } from "react";
 import { currencyFormatter } from "../util";
 import { Link } from "react-router-dom";
+import { AppContext } from "../context/AppContext";
 
-function ProductItem({ id, title, price, image, cart, setCart }) {
+function ProductItem({ id, title, price, image }) {
+  const { cart, setCart } = useContext(AppContext);
 
-
+  const formattedPrice = useMemo(() => currencyFormatter(price), [price]);
   const isInCart = (_id) => {
     return !!cart.find((item) => item.id === _id);
   };
@@ -47,12 +49,10 @@ function ProductItem({ id, title, price, image, cart, setCart }) {
         </Link>
       </div>
       <div className="itemMeta">
-
-        <div className="itemPrice"> {currencyFormatter(price)} </div>
+        <div className="itemPrice"> {formattedPrice} </div>
 
         {isInCart(id) ? (
           <button className="cartButton" onClick={() => countHandler(id)}>
-            {" "}
             {productCount} Added to Cart{" "}
           </button>
         ) : (

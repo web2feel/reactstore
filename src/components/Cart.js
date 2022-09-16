@@ -1,8 +1,10 @@
-import React from "react";
+import React,{useContext} from "react";
 import CartItem from "./CartItem";
 import { currencyFormatter } from "../util";
-function Cart({ cart, setCart }) {
-    
+import {AppContext} from "../context/AppContext"
+
+function Cart() {
+  const {cart, setCart} = useContext(AppContext) 
   const subTotal = cart.reduce((acc, curr) => {
     return acc + curr.count * curr.price;
   }, 0);

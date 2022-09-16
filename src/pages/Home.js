@@ -1,10 +1,10 @@
 import React from "react";
 import ProductGallery from "../components/ProductGallery";
-function Home({ products, cart, setCart }) {
+function Home() {
   return (
     <>
       <div className="productHome">
-        <ProductGallery products={products} cart={cart} setCart={setCart} />
+        <ProductGallery  />
       </div>
     </>
   );
