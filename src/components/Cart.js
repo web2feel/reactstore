@@ -4,13 +4,16 @@ import { currencyFormatter } from "../util";
 import {AppContext} from "../context/AppContext"
 
 function Cart() {
-  const {cart, setCart} = useContext(AppContext) 
+  const {state:{cart},dispatch} = useContext(AppContext) 
+
   const subTotal = cart.reduce((acc, curr) => {
     return acc + curr.count * curr.price;
   }, 0);
 
   const clearCart = () => {
-    setCart([]);
+    dispatch({
+      type:"CLEAR_CART"
+    })
   };
 
   return (cart.length ? (
@@ -18,7 +21,7 @@ function Cart() {
       <h3>Cart</h3>
       <div className="cartList">
         { cart.map((cartProduct) => {
-          return <CartItem key={cartProduct.id} {...cartProduct} setCart={setCart} />;
+          return <CartItem key={cartProduct.id} {...cartProduct}  />;
         }) }
       </div>
 

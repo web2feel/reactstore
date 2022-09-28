@@ -1,32 +1,28 @@
 import React from "react";
 import { currencyFormatter } from "../util";
-function CartItem({ id, title, image, price, count, setCart }) {
-  
+import { useAppContext } from "../hooks/useAppContext";
+
+function CartItem({ id, title, image, price, count }) {
+  const { dispatch } = useAppContext();
+
   const increaseCount = (_id) => {
-    setCart((prev) => {
-      return prev.map((item) => {
-        if (_id === item.id) {
-          return { ...item, count: item.count + 1 };
-        }
-        return item;
-      });
+    dispatch({
+      type: "INCREASE_PRODUCT_COUNT",
+      payload: _id,
     });
   };
 
   const decreaseCount = (_id) => {
     if (count > 1) {
-      setCart((prev) => {
-        return prev.map((item) => {
-          if (_id === item.id) {
-            return { ...item, count: item.count - 1 };
-          }
-          return item;
-        });
+      dispatch({
+        type: "DECREASE_PRODUCT_COUNT",
+        payload: _id,
       });
     } else {
-        setCart((prev) => {
-            return prev.filter(item => item.id !== _id)
-        })
+      dispatch({
+        type: "REMOVE_PRODUCT",
+        payload: _id,
+      });
     }
   };
 

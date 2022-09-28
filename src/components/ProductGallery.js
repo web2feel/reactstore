@@ -1,9 +1,9 @@
-import React,{useContext} from "react";
+import React from "react";
 import ProductItem from "./ProductItem";
-import {AppContext} from "../context/AppContext"
+import {useAppContext} from "../hooks/useAppContext"
 function ProductGallery() {
 
-    const {state} = useContext(AppContext)
+    const {state} = useAppContext()
 
     if(state.products_loading){
       return(

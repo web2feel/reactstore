@@ -1,9 +1,11 @@
 import React from 'react'
+import {useAppContext} from "../hooks/useAppContext"
+function Footer() {
 
-function Footer({name}) {
+  const {state:{siteName}} = useAppContext()
   return (
     <div className="appFooter">
-        <p> {name} developed with ReactJS  </p>
+        <p> {siteName} developed with ReactJS  </p>
     </div>
   )
 }

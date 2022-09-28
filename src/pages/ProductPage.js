@@ -1,10 +1,10 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect} from "react";
 import { currencyFormatter } from "../util";
 import { useParams } from "react-router-dom";
-import {AppContext} from "../context/AppContext"
+import {useAppContext} from "../hooks/useAppContext"
 function ProductPage() {
   
-  const {cart,setCart} = useContext(AppContext)
+  const {state:{cart}, dispatch} = useAppContext()
   
   const { id } = useParams();
   const [product, setProduct] = useState();
@@ -16,7 +16,7 @@ function ProductPage() {
       setProduct(data);
     };
     getProduct();
-  }, []);
+  }, [id]);
 
   const isInCart = (_id) => {
     return !!cart.find((item) => item.id === _id);
@@ -25,28 +25,28 @@ function ProductPage() {
   let productCount = cart.find((item) => item.id === id)?.count;
 
   const countHandler = (_id) => {
-    let itemIndex = cart.findIndex((item) => item.id === _id);
-    setCart((prev) => {
-      return prev.map((item, index) => {
-        if (index === itemIndex) {
-          return { ...item, count: item.count + 1 };
-        }
-        return item;
-      });
-    });
+
+    dispatch({
+      type:"INCREASE_PRODUCT_COUNT",
+      payload:_id
+    })
+
   };
 
   const cartHandler = () => {
-    setCart((prevState) => {
-      let cartProduct = {
+    let cartProduct = {
         id,
         title: product.title,
         price: product.price,
         image: product.image,
         count: 1,
       };
-      return [...prevState, cartProduct];
-    });
+
+    dispatch({
+      type:"ADD_TO_CART",
+      payload:cartProduct
+    })
+
   };
 
   return (

@@ -1,12 +1,16 @@
-import React, { useMemo, useContext } from "react";
+import React, { useMemo } from "react";
 import { currencyFormatter } from "../util";
 import { Link } from "react-router-dom";
-import { AppContext } from "../context/AppContext";
+import { useAppContext } from "../hooks/useAppContext";
 
 function ProductItem({ id, title, price, image }) {
-  const { cart, setCart } = useContext(AppContext);
+  const {
+    state: { cart },
+    dispatch,
+  } = useAppContext();
 
   const formattedPrice = useMemo(() => currencyFormatter(price), [price]);
+
   const isInCart = (_id) => {
     return !!cart.find((item) => item.id === _id);
   };
@@ -14,27 +18,23 @@ function ProductItem({ id, title, price, image }) {
   let productCount = cart.find((item) => item.id === id)?.count;
 
   const countHandler = (_id) => {
-    let itemIndex = cart.findIndex((item) => item.id === _id);
-    setCart((prev) => {
-      return prev.map((item, index) => {
-        if (index === itemIndex) {
-          return { ...item, count: item.count + 1 };
-        }
-        return item;
-      });
+    dispatch({
+      type: "INCREASE_PRODUCT_COUNT",
+      payload: _id,
     });
   };
 
   const cartHandler = () => {
-    setCart((prevState) => {
-      let cartProduct = {
-        id,
-        title,
-        price,
-        image,
-        count: 1,
-      };
-      return [...prevState, cartProduct];
+    let cartProduct = {
+      id,
+      title,
+      price,
+      image,
+      count: 1,
+    };
+    dispatch({
+      type: "ADD_TO_CART",
+      payload: cartProduct,
     });
   };
 
